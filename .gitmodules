@@ -48,7 +48,7 @@
 	url = https://github.com/wrefgtzweve/gmod_perfutils
 [submodule "disconnect-pop-effect_git"]
 	path = disconnect-pop-effect_git
-	url = https://github.com/unknown-gd/disconnect-pop-effect/
+	url = https://github.com/unknown-gd/disconnect-pop-effect
 [submodule "fpp_git"]
 	path = fpp_git
 	url = https://github.com/FPtje/Falcos-Prop-protection
@@ -144,10 +144,10 @@
 	url = https://github.com/ACF-Team/multi-parent
 [submodule "tool_precision-alignment_git"]
 	path = tool_precision-alignment_git
-	url = https://github.com/ACF-Team/precision-alignment/
+	url = https://github.com/ACF-Team/precision-alignment
 [submodule "tool_prop2mesh_git"]
 	path = tool_prop2mesh_git
-	url = https://github.com/shadowscion/Prop2Mesh/commits/master/
+	url = https://github.com/shadowscion/Prop2Mesh
 [submodule "tool_ragdoll-mover_git"]
 	path = tool_ragdoll-mover_git
 	url = https://github.com/Winded/RagdollMover
@@ -174,7 +174,7 @@
 	url = https://github.com/Flarky55/gmod-lzwd
 [submodule "lib_gshader_git"]
 	path = lib_gshader_git
-	url = https://github.com/Akabenko/GShader-library/
+	url = https://github.com/Akabenko/GShader-library
 [submodule "tool_proxy-color_git"]
 	path = tool_proxy-color_git
 	url = https://github.com/NotAKidoS/Proxy-Color-Tool
@@ -202,3 +202,6 @@
 [submodule "tool_constraint-editor_git"]
 	path = tool_constraint-editor_git
 	url = https://github.com/Flarky55/gmod-constraint-editor
+[submodule "tool_magic-align_git"]
+	path = tool_magic-align_git
+	url = https://github.com/SirRanjid/Magic-Align
