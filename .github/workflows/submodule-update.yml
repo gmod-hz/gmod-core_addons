@@ -9,7 +9,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,7 +21,7 @@ jobs:
         uses: actions/checkout@v7.0.0
         with:
           submodules: true
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -34,19 +35,23 @@ jobs:
         run: |
           BRANCH="chore/submodule-update-$(date +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH"
-          echo "$BRANCH=BRANCH" >> "$GITHUB_OUTPUT"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_OUTPUT"
       - name: Commit and push changes
         shell: bash
+        env:
+          BRANCH: ${{ steps.branch.outputs.BRANCH }}
         run: |
           git commit -am "Updated submodules"
-          git push --set-upstream origin '${{ steps.branch.outputs.BRANCH }}'
+          git push --set-upstream origin "$BRANCH"
       - name: Create pull request
         uses: actions/github-script@v9.0.0
+        env:
+          BRANCH: ${{ steps.branch.outputs.BRANCH }}
         with:
           script: |
             await github.rest.pulls.create({
-              owner: '${{ github.repository_owner }}',
-              repo: '${{ github.repository }}'.split('/')[1].trim(),
-              head: '${{ steps.branch.outcome.BRANCH }}',
-              base: 'main',
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.repository }}".split("/")[1].trim(),
+              head: "${{ env.BRANCH }}",
+              base: "main",
             });
