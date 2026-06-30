@@ -27,9 +27,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Update submodules
+        id: update
         shell: bash
-        run: git submodule update --remote
+        run: |
+          git submodule update --remote
+          git diff --quiet; echo "DIFF=$?" >> $GITHUB_OUTPUT
       - name: Create and checkout new branch
+        if: steps.update.outputs.DIFF==1
         id: branch
         shell: bash
         run: |
@@ -37,6 +41,7 @@ jobs:
           git checkout -b "$BRANCH"
           echo "BRANCH=$BRANCH" >> "$GITHUB_OUTPUT"
       - name: Commit and push changes
+        if: steps.update.outputs.DIFF==1
         shell: bash
         env:
           BRANCH: ${{ steps.branch.outputs.BRANCH }}
@@ -44,6 +49,7 @@ jobs:
           git commit -am "Updated submodules"
           git push --set-upstream origin "$BRANCH"
       - name: Create pull request
+        if: steps.update.outputs.DIFF==1
         uses: actions/github-script@v9.0.0
         env:
           BRANCH: ${{ steps.branch.outputs.BRANCH }}
