@@ -25,12 +25,14 @@
 [submodule "cthirdperson_git"]
 	path = cthirdperson_git
 	url = https://github.com/Flarky55/CThirdPerson
+	branch = dev
 [submodule "lib_clib_git"]
 	path = lib_clib_git
 	url = https://github.com/chiraqoRP/CLib
 [submodule "custom-chat_git_outdated"]
 	path = custom-chat_git
 	url = https://github.com/Flarky55/gmod-custom-chat
+	branch = master-core
 [submodule "custom-loadout_git"]
 	path = custom-loadout_git
 	url = https://github.com/StyledStrike/gmod-custom-loadout
@@ -205,3 +207,6 @@
 [submodule "physhing_git"]
 	path = physhing_git
 	url = https://github.com/Flarky55/gmod-physhing
+[submodule "tool_permaprops_git"]
+	path = tool_permaprops_git
+	url = https://github.com/MalboroDEV/PermaProps
