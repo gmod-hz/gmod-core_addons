@@ -39,7 +39,7 @@ jobs:
       - name: Create new branch and push changes
         shell: bash
         run: |
-          echo "BRNACH=chore/submodule-update-$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_ENV"
+          echo "BRANCH=chore/submodule-update-$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_ENV"
           git submodule update --remote
           git checkout -b "$BRANCH"
           git commit -am "Submodule update"
