@@ -39,11 +39,11 @@ jobs:
       - name: Create new branch and push changes
         shell: bash
         run: |
-          echo 'branch=chore/submodule-update-$(date +%Y%m%d-%H%M%S)' >> ${{github.env}}
+          echo "BRNACH=chore/submodule-update-$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_ENV"
           git submodule update --remote
-          git checkout -b "chore/submodule-update"
+          git checkout -b "$BRANCH"
           git commit -am "Submodule update"
-          git push --set-upstream origin "chore/submodule-update"
+          git push --set-upstream origin "$BRANCH"
       - name: Create pull request
         uses: actions/github-script@v9.0.0
         with:
@@ -51,6 +51,6 @@ jobs:
             await github.rest.pulls.create({
               owner: '${{github.repository_owner}}',
               repo: '${{github.repository}}'.split('/')[1].trim(),
-              head: '$branch',
+              head: "$BRANCH",
               base: 'main',
             });
