@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           git submodule update --remote
-          git diff --quiet; echo "DIFF=$?" >> $GITHUB_OUTPUT
+          git diff --quiet || true; echo "DIFF=$?" >> $GITHUB_OUTPUT
       - name: Create and checkout new branch
         if: steps.update.outputs.DIFF==1
         id: branch
